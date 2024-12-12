@@ -1,5 +1,6 @@
 import '@total-typescript/ts-reset/filter-boolean'
 import { defineCommand, runMain } from 'citty'
+import Text from '~/misc/Text'
 import { description, name, version } from '../package.json'
 
 const main = defineCommand({
@@ -23,6 +24,34 @@ const main = defineCommand({
     channel: import('./commands/channel').then((mod) => mod.default),
     'check-is-live': import('./commands/check-is-live').then((mod) => mod.default),
     'check-is-premiere': import('./commands/check-is-premiere').then((mod) => mod.default),
+  },
+  run: () => {
+    const data: any = {
+      content: '@pbsspacetime',
+      styleRuns: [
+        {
+          weightLabel: 'FONT_WEIGHT_MEDIUM',
+          styleRunExtensions: {
+            styleRunColorMapExtension: {
+              colorMap: [
+                {
+                  key: 'USER_INTERFACE_THEME_LIGHT',
+                  value: 4279440147,
+                },
+                {
+                  key: 'USER_INTERFACE_THEME_DARK',
+                  value: 4294967295,
+                },
+              ],
+            },
+          },
+        },
+      ],
+    }
+
+    const text = Text.fromAttributed(data)
+
+    console.log(text)
   },
 })
 

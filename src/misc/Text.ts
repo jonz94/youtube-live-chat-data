@@ -188,10 +188,13 @@ export default class Text {
 }
 
 function findMatchingRun(runs: RawRun[], response_run: ResponseRun) {
+  const response_run_start_index = response_run.startIndex || 0
+  const response_run_length = response_run.length || 0
+
   return runs.find((run) => {
     return (
-      run.startIndex <= response_run.startIndex &&
-      response_run.startIndex + response_run.length <= run.startIndex + run.text.length
+      run.startIndex <= response_run_start_index &&
+      response_run_start_index + response_run_length <= run.startIndex + run.text.length
     )
   })
 }
